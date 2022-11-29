@@ -59,9 +59,9 @@ export const Setor = () => {
       <Styled.Wrapper>
         <SectionComponent>
           <TitleComponent title="Processos" />
-          {data.map((val) => {
+          {data.map((val: any) => {
             if (!val.ativo) return "";
-            return <MenuProcess title={val.titulo} key={val.id} {...val} />;
+            return <MenuProcess key={val.id} {...val} />;
           })}
         </SectionComponent>
       </Styled.Wrapper>

@@ -11,20 +11,27 @@ import config from "../../config";
 import { useEffect, useState } from "react";
 
 export type MenuProcessProps = {
-  title: string;
+  titulo: string;
   admin?: boolean;
   setor: string;
   id: string;
+  createdAt: string;
+  updatedAt: string;
+  ativo: boolean;
 };
 
 export const MenuProcess = ({
-  title,
+  titulo,
   admin = false,
   setor,
   id,
+  createdAt,
+  updatedAt,
+  ...rest
 }: MenuProcessProps) => {
   const [deleted, setDeleted] = useState(false);
   const params = useParams();
+  console.log(rest);
 
   const handleDelete = async (e: any) => {
     const token = localStorage.getItem("token");
@@ -50,8 +57,8 @@ export const MenuProcess = ({
     return (
       <Styled.Wrapper>
         <Link to={`/admin/setor/${setor}/${id}`}>
-          <MenuTitleProcess title={title} />
-          <MenuDescriptionProcess />
+          <MenuTitleProcess title={titulo} />
+          <MenuDescriptionProcess data={updatedAt ? updatedAt : createdAt} />
         </Link>
         <div className="container-tools">
           <Link to={`/admin/setor/${params.setor}/${id}/edit`}>
@@ -96,8 +103,8 @@ export const MenuProcess = ({
   return (
     <Styled.Wrapper>
       <Link to={`/setor/${setor}/${id}`}>
-        <MenuTitleProcess title={title} />
-        <MenuDescriptionProcess />
+        <MenuTitleProcess title={titulo} />
+        <MenuDescriptionProcess data={updatedAt ? updatedAt : createdAt} />
       </Link>
     </Styled.Wrapper>
   );

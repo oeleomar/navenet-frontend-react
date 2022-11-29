@@ -66,6 +66,7 @@ export const AdminCreateProcess = () => {
       if (e.response.data.msg === "Token inválido") {
         setToken(true);
       }
+      console.log(e);
       alert(`Algo saiu errado: ${e.response.data.msg}`);
     }
   };

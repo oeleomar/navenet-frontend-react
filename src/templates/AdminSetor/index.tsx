@@ -29,6 +29,7 @@ export const AdminSetor = ({ title }: AdminSetorProps) => {
       try {
         const data = await axios(config.url + config.slugProcess + param.setor);
         setData(data.data.data);
+        console.log(data.data.data);
       } catch (e) {
         //
       }
@@ -80,11 +81,9 @@ export const AdminSetor = ({ title }: AdminSetorProps) => {
               </Styled.ButtonAdd>
             </Link>
           </Styled.MainContainer>
-          {data.map((val) => {
+          {data.map((val: any) => {
             if (!val.ativo) return "";
-            return (
-              <MenuProcess title={val.titulo} key={val.id} {...val} admin />
-            );
+            return <MenuProcess key={val.id} {...val} admin />;
           })}
         </SectionComponent>
       </Styled.Wrapper>
