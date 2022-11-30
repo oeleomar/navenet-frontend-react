@@ -31,7 +31,6 @@ export const MenuProcess = ({
 }: MenuProcessProps) => {
   const [deleted, setDeleted] = useState(false);
   const params = useParams();
-  console.log(rest);
 
   const handleDelete = async (e: any) => {
     const token = localStorage.getItem("token");

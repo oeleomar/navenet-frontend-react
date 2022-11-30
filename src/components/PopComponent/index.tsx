@@ -14,7 +14,7 @@ export const PopComponent = ({
   if (!documento) {
     return (
       <Styled.Wrapper>
-        <h1>Nenhum documento assiciado</h1>
+        <h1>Nenhum documento associado</h1>
       </Styled.Wrapper>
     );
   }
