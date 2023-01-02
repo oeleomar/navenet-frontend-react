@@ -21,7 +21,6 @@ export const VideoComponent = ({
   video,
   ...rest
 }: ProcessProps) => {
-  console.log(video);
   return (
     <Styled.Wrapper>
       <VideoPlayer video={video} key={_id} />
