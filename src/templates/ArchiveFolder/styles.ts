@@ -1,7 +1,11 @@
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
-  ${({ theme }) => css``}
+  ${({ theme }) => css`
+    h2 {
+      text-align: center;
+    }
+  `}
 `;
 
 export const WrapperBox = styled.div`
@@ -9,6 +13,8 @@ export const WrapperBox = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;
+    max-width: 120rem;
+    margin: 0 auto;
     flex-wrap: wrap;
     gap: 2rem;
     padding: 0 6rem 0 10rem;

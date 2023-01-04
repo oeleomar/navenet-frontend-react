@@ -42,9 +42,9 @@ export const ArchiveBox = ({ originalname, filename }: ArchiveBoxProps) => {
     pptx: "powerpoint",
   };
 
-  const indexOf = originalname.indexOf(".");
-  console.log(indexOf);
-  const result = originalname.slice(indexOf).replace(/[\W]/g, "");
+  const result = originalname
+    .substring(originalname.length - 4)
+    .replace(/[\W]/g, "");
   fileType = chaves[result] || "normal";
 
   return (
