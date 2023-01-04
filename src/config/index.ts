@@ -7,4 +7,5 @@ export default {
   slugPop: "docs/",
   slugImages: "images/",
   slugAdmin: "admin/",
-};
+  slugArchive: "archive/",
+} as const;

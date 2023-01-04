@@ -18,6 +18,8 @@ export type MenuProcessProps = {
   createdAt: string;
   updatedAt: string;
   ativo: boolean;
+  archive: boolean;
+  _id: boolean;
 };
 
 export const MenuProcess = ({
@@ -27,6 +29,8 @@ export const MenuProcess = ({
   id,
   createdAt,
   updatedAt,
+  archive,
+  _id,
   ...rest
 }: MenuProcessProps) => {
   const [deleted, setDeleted] = useState(false);
@@ -95,6 +99,17 @@ export const MenuProcess = ({
             </AlertDialog.Portal>
           </AlertDialog.Root>
         </div>
+      </Styled.Wrapper>
+    );
+  }
+
+  if (archive) {
+    return (
+      <Styled.Wrapper>
+        <Link to={`/arquivos/setor/${params.setor}/${_id}`}>
+          <MenuTitleProcess title={titulo} />
+          <MenuDescriptionProcess data={updatedAt ? updatedAt : createdAt} />
+        </Link>
       </Styled.Wrapper>
     );
   }

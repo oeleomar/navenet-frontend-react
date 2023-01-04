@@ -18,6 +18,8 @@ import { AdminSetor } from "./templates/AdminSetor";
 import { AdminCreateProcess } from "./templates/AdminCreateProcess";
 import { AdmninEditProcess } from "./templates/AdminEditProcess";
 import { AdminProcesso } from "./templates/AdminProcesso";
+import { Arquivos } from "./templates/Arquivos";
+import { ArchiveFolder } from "./templates/ArchiveFolder";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
@@ -33,6 +35,13 @@ root.render(
           <Route path="/" element={<Home />} />
           <Route path="/setor/:setor" element={<Setor />} />
           <Route path="/setor/:setor/:id" element={<Processo />} />
+
+          <Route path="/arquivos/setor/:setor" element={<Arquivos />} />
+          <Route
+            path="/arquivos/setor/:setor/:id"
+            element={<ArchiveFolder />}
+          />
+
           <Route path="/admin/auth" element={<LoginTemplate />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/setor/:setor" element={<AdminSetor />} />

@@ -10,10 +10,6 @@ import { ProcessProps, VideoComponent } from "../../components/VideoComponent";
 import config from "../../config";
 import * as Styled from "./styles";
 
-type ProcessoProps = {
-  admin?: boolean;
-};
-
 export const Processo = ({ admin = false }) => {
   const [covered, setCovered] = useState(false);
   const [state, setState] = useState("video");
