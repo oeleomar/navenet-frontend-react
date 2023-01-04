@@ -44,7 +44,7 @@ export const Label = styled.label`
   ${({ theme }) => css`
     position: relative;
     display: inline-block;
-    width: 15rem;
+    width: 18rem;
     height: 4rem;
     display: flex;
     justify-content: space-between;
@@ -58,15 +58,16 @@ export const Video = styled.span<SpanCovered>`
     color: ${covered ? theme.colors.darkWhite : theme.colors.primary};
     font-size: ${theme.font.sizes.small};
     font-weight: 700;
-    margin-left: 12px;
+
     transition: all 0.3s ease-in-out;
     z-index: -1;
+    margin-right: 16px;
   `}
 `;
 
 export const Pop = styled.span<SpanCovered>`
   ${({ theme, covered }) => css`
-    margin-right: 20px;
+    margin-left: 5px;
     color: ${covered ? theme.colors.darkWhite : theme.colors.primary};
     font-size: ${theme.font.sizes.small};
     font-weight: 700;
@@ -99,7 +100,7 @@ export const Span = styled.span`
       position: absolute;
       content: "";
       height: 4.1rem;
-      width: 8rem;
+      width: 9rem;
       left: -1px;
       bottom: 0px;
       background-color: ${theme.colors.darkWhite};
@@ -109,7 +110,7 @@ export const Span = styled.span`
     }
 
     input:checked + &:before {
-      transform: translateX(7.5rem);
+      transform: translateX(9.2rem);
     }
   `}
 `;

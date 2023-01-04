@@ -12,7 +12,7 @@ import * as Styled from "./styles";
 
 export const Processo = ({ admin = false }) => {
   const [covered, setCovered] = useState(false);
-  const [state, setState] = useState("video");
+  const [state, setState] = useState("pop");
   const [data, setData] = useState(null);
   const [error, setError] = useState("");
   const params = useParams();
@@ -73,19 +73,19 @@ export const Processo = ({ admin = false }) => {
               </Link>
             )}
             <Styled.Label>
-              <Styled.Video className="video" covered={covered}>
-                Tutorial
-              </Styled.Video>
+              <Styled.Pop covered={covered}>Documento</Styled.Pop>
               <Styled.Input
                 type="checkbox"
                 onChange={(e) => setCovered(!covered)}
               />
               <Styled.Span />
-              <Styled.Pop covered={!covered}>DOC</Styled.Pop>
+              <Styled.Video className="video" covered={!covered}>
+                Tutorial
+              </Styled.Video>
             </Styled.Label>
           </Styled.MenuOptions>
           <ContentSection>
-            {state === "video" ? (
+            {state === "pop" ? (
               <VideoComponent {...(data as ProcessProps)} />
             ) : (
               <PopComponent {...(data as ProcessProps)} />
