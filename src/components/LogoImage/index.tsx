@@ -5,8 +5,7 @@ import * as Styled from "./styles";
 export type LogoImageProps = {};
 
 export const LogoImage = () => {
-  const location = useLocation();
-  const locate = location.pathname.split("/")[1];
+  const locate = window.location.pathname.includes("admin");
 
   const handleClick = (e: any) => {
     const childs =
@@ -17,8 +16,8 @@ export const LogoImage = () => {
   };
   return (
     <Styled.Wrapper>
-      <Link to={locate === "admin" ? "/admin" : "/"} onClick={handleClick}>
-        {locate === "admin" ? (
+      <Link to={locate ? "/admin" : "/"} onClick={handleClick}>
+        {locate ? (
           <>
             <Styled.Image
               admin

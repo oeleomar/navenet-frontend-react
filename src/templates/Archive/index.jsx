@@ -26,7 +26,7 @@ export interface ArquivosProps {
   visibilidade: boolean;
 }
 
-export const Arquivos = () => {
+export const Archive = () => {
   const param = useParams();
   const [data, setData]: ArquivosProps[] | null = useState([]);
 

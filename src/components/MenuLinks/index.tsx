@@ -16,14 +16,12 @@ export const MenuLinks = ({ href, pathName, slug = "" }: MenuLinksProps) => {
   const path = window.location.pathname;
 
   useEffect(() => {
-    //slug === params.setor ? setActive(true) : setActive(false);
-    if (slug === params.setor) {
-      setActive(true);
-    } else {
-      setActive(false);
-    }
+    slug === params.setor ? setActive(true) : setActive(false);
+  }, [slug, params.setor]);
+
+  useEffect(() => {
     path.includes("arquivos") ? setProcess(false) : setProcess(true);
-  }, [params, slug, path]);
+  }, [path]);
 
   return (
     <Styled.Li active={active}>

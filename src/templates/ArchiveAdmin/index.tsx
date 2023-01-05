@@ -14,7 +14,7 @@ export type AdminSetorProps = {
   title?: string;
 };
 
-export const AdminSetor = ({ title }: AdminSetorProps) => {
+export const ArchiveAdmin = ({ title }: AdminSetorProps) => {
   const param = useParams();
   const [data, setData] = useState<DataSetor[] | null>([]);
   const navigate = useNavigate();
@@ -27,10 +27,12 @@ export const AdminSetor = ({ title }: AdminSetorProps) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await axios(config.url + config.slugProcess + param.setor);
+        const data = await axios(config.url + config.slugArchive + param.setor);
         setData(data.data.data);
+        console.log(data.data.data);
       } catch (e) {
-        //
+        alert("Impossível buscar dados");
+        setData(null);
       }
     };
     fetchData();
@@ -53,8 +55,8 @@ export const AdminSetor = ({ title }: AdminSetorProps) => {
         <Header />
         <SectionComponent>
           <Styled.MainContainer>
-            <TitleComponent title="Nenhum processo encontrado" />
-            <Link to={`/admin/setor/${param.setor}/new`}>
+            <TitleComponent title="Arquivos" />
+            <Link to={`/arquivos/admin/setor/${param.setor}/new`}>
               <Styled.ButtonAdd>
                 <Upload size={16} />
                 NOVO UPLOAD
@@ -72,8 +74,8 @@ export const AdminSetor = ({ title }: AdminSetorProps) => {
       <Styled.Wrapper>
         <SectionComponent>
           <Styled.MainContainer>
-            <TitleComponent title="Processos" />
-            <Link to={`/admin/setor/${param.setor}/new`}>
+            <TitleComponent title="Arquivos" />
+            <Link to={`/arquivos/admin/setor/${param.setor}/new`}>
               <Styled.ButtonAdd>
                 <Upload size={16} />
                 NOVO UPLOAD
@@ -81,8 +83,16 @@ export const AdminSetor = ({ title }: AdminSetorProps) => {
             </Link>
           </Styled.MainContainer>
           {data.map((val: any) => {
-            if (!val.ativo) return "";
-            return <MenuProcess key={val.id} {...val} admin />;
+            if (!val.visibilidade) return "";
+            return (
+              <MenuProcess
+                key={val.titulo}
+                {...val}
+                archive={true}
+                admin
+                folder
+              />
+            );
           })}
         </SectionComponent>
       </Styled.Wrapper>

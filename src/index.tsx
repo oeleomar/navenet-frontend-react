@@ -18,8 +18,10 @@ import { AdminSetor } from "./templates/AdminSetor";
 import { AdminCreateProcess } from "./templates/AdminCreateProcess";
 import { AdmninEditProcess } from "./templates/AdminEditProcess";
 import { AdminProcesso } from "./templates/AdminProcesso";
-import { Arquivos } from "./templates/Arquivos";
+import { Archive } from "./templates/Archive";
 import { ArchiveFolder } from "./templates/ArchiveFolder";
+import { ArchiveAdmin } from "./templates/ArchiveAdmin";
+import { ArchiveAdminNew } from "./templates/ArchiveAdminNew";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
@@ -36,7 +38,7 @@ root.render(
           <Route path="/setor/:setor" element={<Setor />} />
           <Route path="/setor/:setor/:id" element={<Processo />} />
 
-          <Route path="/arquivos/setor/:setor" element={<Arquivos />} />
+          <Route path="/arquivos/setor/:setor" element={<Archive />} />
           <Route
             path="/arquivos/setor/:setor/:id"
             element={<ArchiveFolder />}
@@ -44,6 +46,7 @@ root.render(
 
           <Route path="/admin/auth" element={<LoginTemplate />} />
           <Route path="/admin" element={<Admin />} />
+
           <Route path="/admin/setor/:setor" element={<AdminSetor />} />
           <Route path="/admin/setor/:setor/:id" element={<AdminProcesso />} />
           <Route
@@ -54,10 +57,16 @@ root.render(
             path="/admin/setor/:setor/:id/edit"
             element={<AdmninEditProcess />}
           />
+
+          <Route
+            path="/arquivos/admin/setor/:setor"
+            element={<ArchiveAdmin />}
+          />
+          <Route
+            path="/arquivos/admin/setor/:setor/new"
+            element={<ArchiveAdminNew archive />}
+          />
         </Routes>
-      </BrowserRouter>
-      <BrowserRouter>
-        <Routes></Routes>
       </BrowserRouter>
     </ThemeProvider>
   </React.StrictMode>,

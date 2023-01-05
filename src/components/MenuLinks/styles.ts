@@ -29,7 +29,9 @@ export const SubMenuContainer = styled.div<ActiveProps>`
     position: relative;
     z-index: 1;
     overflow: hidden;
-    display: ${active ? "block" : "none"};
+    display: block;
+    height: ${active ? "auto" : "0px"};
+    transition: all 0.3s ease-in-out;
 
     > a.subMenu {
       text-decoration: none;

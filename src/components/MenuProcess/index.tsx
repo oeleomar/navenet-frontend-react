@@ -18,8 +18,9 @@ export type MenuProcessProps = {
   createdAt: string;
   updatedAt: string;
   ativo: boolean;
-  archive: boolean;
+  archive?: boolean;
   _id: boolean;
+  folder?: boolean;
 };
 
 export const MenuProcess = ({
@@ -29,7 +30,7 @@ export const MenuProcess = ({
   id,
   createdAt,
   updatedAt,
-  archive,
+  archive = false,
   _id,
   ...rest
 }: MenuProcessProps) => {
@@ -44,7 +45,10 @@ export const MenuProcess = ({
       },
     };
     try {
-      await axios.delete(config.url + config.slugProcess + id, configHeaders);
+      await axios.delete(
+        `${config.url}${config.slugArchive}delete/${_id}`,
+        configHeaders,
+      );
       setDeleted(true);
       alert("Processo apagado com sucesso");
     } catch (e) {
@@ -55,6 +59,53 @@ export const MenuProcess = ({
   useEffect(() => {
     if (deleted) document.location.reload();
   }, [deleted]);
+
+  if (admin && archive) {
+    return (
+      <Styled.Wrapper>
+        <Link to={`/arquivos/admin/setor/${params.setor}/${_id}`}>
+          <MenuTitleProcess title={titulo} />
+          <MenuDescriptionProcess data={updatedAt ? updatedAt : createdAt} />
+        </Link>
+        <div className="container-tools">
+          <Link to={`/arquivos/admin/setor/${params.setor}/${_id}/edit`}>
+            <AdminEditTool />
+          </Link>
+          <AlertDialog.Root>
+            <AlertDialog.Trigger>
+              <AdminDeleteTool />
+            </AlertDialog.Trigger>
+            <AlertDialog.Portal>
+              <AlertDialog.Overlay className="AlertDialogOverlay" />
+              <AlertDialog.Content className="AlertDialogContent">
+                <AlertDialog.Title className="AlertDialogTitle">
+                  <AlertCircleOutline size={64} />
+                </AlertDialog.Title>
+                <AlertDialog.Description className="AlertDialogDescription">
+                  Com essa ação você irá apagar essa pasta e todos os arquivos
+                  relacionados a ela.
+                </AlertDialog.Description>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: 25,
+                    justifyContent: "center",
+                  }}
+                >
+                  <AlertDialog.Action asChild onClick={handleDelete}>
+                    <button className="Button red">Sim</button>
+                  </AlertDialog.Action>
+                  <AlertDialog.Cancel asChild>
+                    <button className="Button mauve">Não</button>
+                  </AlertDialog.Cancel>
+                </div>
+              </AlertDialog.Content>
+            </AlertDialog.Portal>
+          </AlertDialog.Root>
+        </div>
+      </Styled.Wrapper>
+    );
+  }
 
   if (admin) {
     return (
