@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Upload } from "@styled-icons/bootstrap/Upload";
 import { MenuProcess } from "../../components/MenuProcess";
+import * as Dialog from "@radix-ui/react-dialog";
 import { SectionComponent } from "../../components/SectionComponent";
 import { TitleComponent } from "../../components/TitleComponent";
 import config from "../../config";
@@ -10,6 +11,7 @@ import { DataSetor } from "../Setor";
 import * as Styled from "./styles";
 import { Header } from "../../components/Header";
 import { ArchiveBox } from "../../components/ArchiveBox";
+import { ArchiveAdminAdd } from "../../components/ArchiveAdminAdd";
 
 export type AdminSetorProps = {
   title?: string;
@@ -56,12 +58,17 @@ export const ArchiveAdmin = ({ title }: AdminSetorProps) => {
         <SectionComponent>
           <Styled.MainContainer>
             <TitleComponent title="Arquivos" />
-            <Link to={`/arquivos/admin/setor/${param.setor}/new`}>
-              <Styled.ButtonAdd>
-                <Upload size={16} />
-                NOVO UPLOAD
-              </Styled.ButtonAdd>
-            </Link>
+            <Dialog.Root>
+              <Dialog.Trigger asChild>
+                <Styled.ButtonAdd>
+                  <Upload size={16} />
+                  Novo Upload
+                </Styled.ButtonAdd>
+              </Dialog.Trigger>
+              <Dialog.Portal>
+                <ArchiveAdminAdd />
+              </Dialog.Portal>
+            </Dialog.Root>
           </Styled.MainContainer>
         </SectionComponent>
       </>
@@ -75,10 +82,17 @@ export const ArchiveAdmin = ({ title }: AdminSetorProps) => {
         <SectionComponent>
           <Styled.MainContainer>
             <TitleComponent title="Arquivos" />
-            <Styled.ButtonAdd>
-              <Upload size={16} />
-              Novo Upload
-            </Styled.ButtonAdd>
+            <Dialog.Root>
+              <Dialog.Trigger asChild>
+                <Styled.ButtonAdd>
+                  <Upload size={16} />
+                  Novo Upload
+                </Styled.ButtonAdd>
+              </Dialog.Trigger>
+              <Dialog.Portal>
+                <ArchiveAdminAdd />
+              </Dialog.Portal>
+            </Dialog.Root>
           </Styled.MainContainer>
           <Styled.WrapperBox>
             {data.map((val: any) => (

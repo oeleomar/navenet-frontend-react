@@ -100,6 +100,10 @@ export const GlobalStyles = createGlobalStyle`
       font-weight: 400;
     }
 
+    .dialogDescription span {
+      display: block;
+    }
+
     @keyframes overlayShow {
       from {
         opacity: 0;

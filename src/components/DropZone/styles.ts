@@ -7,7 +7,7 @@ type DropZoneProps = {
 export const Wrapper = styled.div<DropZoneProps>`
   ${({ theme, rejected }) => css`
     width: 100%;
-    height: 100%;
+    height: 10rem;
     border: 5px dashed
       ${rejected ? theme.colors.redTransparent : theme.colors.darkWhite2};
     display: flex;
