@@ -21,7 +21,6 @@ import { AdminProcesso } from "./templates/AdminProcesso";
 import { Archive } from "./templates/Archive";
 import { ArchiveFolder } from "./templates/ArchiveFolder";
 import { ArchiveAdmin } from "./templates/ArchiveAdmin";
-import { ArchiveAdminNew } from "./templates/ArchiveAdminNew";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
@@ -61,10 +60,6 @@ root.render(
           <Route
             path="/arquivos/admin/setor/:setor"
             element={<ArchiveAdmin />}
-          />
-          <Route
-            path="/arquivos/admin/setor/:setor/new"
-            element={<ArchiveAdminNew archive />}
           />
         </Routes>
       </BrowserRouter>

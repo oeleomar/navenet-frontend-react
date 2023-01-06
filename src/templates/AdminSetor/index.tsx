@@ -81,7 +81,6 @@ export const AdminSetor = ({ title }: AdminSetorProps) => {
             </Link>
           </Styled.MainContainer>
           {data.map((val: any) => {
-            if (!val.ativo) return "";
             return <MenuProcess key={val.id} {...val} admin />;
           })}
         </SectionComponent>

@@ -7,10 +7,13 @@ import { FiletypeXml } from "@styled-icons/bootstrap/FiletypeXml";
 import { FilePowerpoint } from "@styled-icons/fa-solid/FilePowerpoint";
 import { CardImage } from "@styled-icons/bootstrap/CardImage";
 import { Folder } from "@styled-icons/bootstrap/Folder";
+import { ArchiveAdminTools } from "../ArchiveAdminTools/ArchiveAdminTools";
 
 export type ArchiveBoxProps = {
   originalname: string;
   filename: string;
+  admin?: boolean;
+  data: any;
 };
 
 export type FileTypesProps =
@@ -23,7 +26,12 @@ export type FileTypesProps =
   | "powerpoint"
   | "imagem";
 
-export const ArchiveBox = ({ originalname, filename }: ArchiveBoxProps) => {
+export const ArchiveBox = ({
+  originalname,
+  filename,
+  data,
+  admin = false,
+}: ArchiveBoxProps) => {
   let fileType: FileTypesProps = "normal";
   const chaves: any = {
     doc: "doc",
@@ -48,14 +56,15 @@ export const ArchiveBox = ({ originalname, filename }: ArchiveBoxProps) => {
   fileType = chaves[result] || "normal";
 
   return (
-    <Styled.ContainerBox href={`/archives/${filename}`} download>
+    <Styled.ContainerBox>
+      {admin ? <ArchiveAdminTools data={data} /> : ""}
       <Styled.ContainerType fileType={fileType}>
         {fileIconReturn(fileType)}
       </Styled.ContainerType>
       <Styled.ContainerName>
         <Styled.ArchiveName>
           {originalname.length > 20
-            ? `${originalname.slice(0, 20)} ...`
+            ? `${originalname.slice(0, 20)} ... .${result}`
             : originalname}
         </Styled.ArchiveName>
       </Styled.ContainerName>

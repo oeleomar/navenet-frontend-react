@@ -3,16 +3,19 @@ import * as Styled from "./styles";
 
 export type DropZoneUploadProcessProps = {
   file: File;
-  progress: number;
+  error: any;
 };
 
 export const DropZoneUploadProcess = ({
   file,
-  progress,
+  error,
 }: DropZoneUploadProcessProps) => {
+  const result = file.name.substring(file.name.length - 4).replace(/[\W]/g, "");
   return (
-    <Styled.Wrapper>
-      {file.name} - {progress}
+    <Styled.Wrapper error={error.originalname === file.name ? true : false}>
+      {file.name.length > 40
+        ? `${file.name.slice(0, 40)} ... .${result}`
+        : file.name}
     </Styled.Wrapper>
   );
 };

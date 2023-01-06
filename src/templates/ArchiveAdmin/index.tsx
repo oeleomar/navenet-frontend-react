@@ -9,6 +9,7 @@ import config from "../../config";
 import { DataSetor } from "../Setor";
 import * as Styled from "./styles";
 import { Header } from "../../components/Header";
+import { ArchiveBox } from "../../components/ArchiveBox";
 
 export type AdminSetorProps = {
   title?: string;
@@ -29,7 +30,6 @@ export const ArchiveAdmin = ({ title }: AdminSetorProps) => {
       try {
         const data = await axios(config.url + config.slugArchive + param.setor);
         setData(data.data.data);
-        console.log(data.data.data);
       } catch (e) {
         alert("Impossível buscar dados");
         setData(null);
@@ -75,25 +75,16 @@ export const ArchiveAdmin = ({ title }: AdminSetorProps) => {
         <SectionComponent>
           <Styled.MainContainer>
             <TitleComponent title="Arquivos" />
-            <Link to={`/arquivos/admin/setor/${param.setor}/new`}>
-              <Styled.ButtonAdd>
-                <Upload size={16} />
-                NOVO UPLOAD
-              </Styled.ButtonAdd>
-            </Link>
+            <Styled.ButtonAdd>
+              <Upload size={16} />
+              Novo Upload
+            </Styled.ButtonAdd>
           </Styled.MainContainer>
-          {data.map((val: any) => {
-            if (!val.visibilidade) return "";
-            return (
-              <MenuProcess
-                key={val.titulo}
-                {...val}
-                archive={true}
-                admin
-                folder
-              />
-            );
-          })}
+          <Styled.WrapperBox>
+            {data.map((val: any) => (
+              <ArchiveBox {...val.arquivo} admin data={val} key={val._id} />
+            ))}
+          </Styled.WrapperBox>
         </SectionComponent>
       </Styled.Wrapper>
     </>

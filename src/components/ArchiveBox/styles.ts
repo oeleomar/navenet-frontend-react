@@ -4,13 +4,14 @@ interface FileTypeProps {
   fileType: string;
 }
 
-export const ContainerBox = styled.a`
+export const ContainerBox = styled.div`
   ${({ theme }) => css`
     width: 20rem;
     height: 15rem;
     border: 5px solid ${theme.colors.darkWhite2};
     box-shadow: 0px 2px 10px ${theme.colors.darkWhite2};
-    cursor: pointer;
+    position: relative;
+    z-index: 0;
   `}
 `;
 

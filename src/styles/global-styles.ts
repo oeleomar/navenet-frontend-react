@@ -86,6 +86,20 @@ export const GlobalStyles = createGlobalStyle`
       background-color: ${theme.colors.primary};
     }
 
+    
+    .dialogTitle {
+      color: ${theme.colors.darkBlack};
+      font-size: ${theme.font.sizes.medium};
+      text-align: start;
+    }
+
+    .dialogDescription {
+      color: ${theme.colors.black};
+      font-size: ${theme.font.sizes.small};
+      text-align: start;
+      font-weight: 400;
+    }
+
     @keyframes overlayShow {
       from {
         opacity: 0;

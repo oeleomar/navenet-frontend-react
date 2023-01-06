@@ -30,7 +30,6 @@ export const MenuProcess = ({
   id,
   createdAt,
   updatedAt,
-  archive = false,
   _id,
   ...rest
 }: MenuProcessProps) => {
@@ -46,7 +45,7 @@ export const MenuProcess = ({
     };
     try {
       await axios.delete(
-        `${config.url}${config.slugArchive}delete/${_id}`,
+        `${config.url}${config.slugProcess}${id}`,
         configHeaders,
       );
       setDeleted(true);
@@ -59,53 +58,6 @@ export const MenuProcess = ({
   useEffect(() => {
     if (deleted) document.location.reload();
   }, [deleted]);
-
-  if (admin && archive) {
-    return (
-      <Styled.Wrapper>
-        <Link to={`/arquivos/admin/setor/${params.setor}/${_id}`}>
-          <MenuTitleProcess title={titulo} />
-          <MenuDescriptionProcess data={updatedAt ? updatedAt : createdAt} />
-        </Link>
-        <div className="container-tools">
-          <Link to={`/arquivos/admin/setor/${params.setor}/${_id}/edit`}>
-            <AdminEditTool />
-          </Link>
-          <AlertDialog.Root>
-            <AlertDialog.Trigger>
-              <AdminDeleteTool />
-            </AlertDialog.Trigger>
-            <AlertDialog.Portal>
-              <AlertDialog.Overlay className="AlertDialogOverlay" />
-              <AlertDialog.Content className="AlertDialogContent">
-                <AlertDialog.Title className="AlertDialogTitle">
-                  <AlertCircleOutline size={64} />
-                </AlertDialog.Title>
-                <AlertDialog.Description className="AlertDialogDescription">
-                  Com essa ação você irá apagar essa pasta e todos os arquivos
-                  relacionados a ela.
-                </AlertDialog.Description>
-                <div
-                  style={{
-                    display: "flex",
-                    gap: 25,
-                    justifyContent: "center",
-                  }}
-                >
-                  <AlertDialog.Action asChild onClick={handleDelete}>
-                    <button className="Button red">Sim</button>
-                  </AlertDialog.Action>
-                  <AlertDialog.Cancel asChild>
-                    <button className="Button mauve">Não</button>
-                  </AlertDialog.Cancel>
-                </div>
-              </AlertDialog.Content>
-            </AlertDialog.Portal>
-          </AlertDialog.Root>
-        </div>
-      </Styled.Wrapper>
-    );
-  }
 
   if (admin) {
     return (
@@ -150,17 +102,6 @@ export const MenuProcess = ({
             </AlertDialog.Portal>
           </AlertDialog.Root>
         </div>
-      </Styled.Wrapper>
-    );
-  }
-
-  if (archive) {
-    return (
-      <Styled.Wrapper>
-        <Link to={`/arquivos/setor/${params.setor}/${_id}`}>
-          <MenuTitleProcess title={titulo} />
-          <MenuDescriptionProcess data={updatedAt ? updatedAt : createdAt} />
-        </Link>
       </Styled.Wrapper>
     );
   }
