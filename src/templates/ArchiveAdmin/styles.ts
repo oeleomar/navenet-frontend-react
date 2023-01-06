@@ -17,8 +17,7 @@ export const MainContainer = styled.div`
 
 export const ButtonAdd = styled.button`
   ${({ theme }) => css`
-    width: 12rem;
-    height: 6rem;
+    padding: 0.5rem 1.5rem;
     background-color: ${theme.colors.primary};
     color: ${theme.colors.darkWhite};
     border: none;
@@ -34,5 +33,19 @@ export const ButtonAdd = styled.button`
     > svg {
       margin-right: 2px;
     }
+  `}
+`;
+
+export const WrapperBox = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 120rem;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 0 6rem 0 10rem;
+    margin-bottom: 10rem;
   `}
 `;
