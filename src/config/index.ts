@@ -8,4 +8,6 @@ export default {
   slugImages: "images/",
   slugAdmin: "admin/",
   slugArchive: "archive/",
+  slugSuper: "super/",
+  slugSector: "sector/",
 } as const;

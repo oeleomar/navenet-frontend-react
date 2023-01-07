@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import * as Styled from "./styles";
 import { TrashFill } from "@styled-icons/bootstrap/TrashFill";
 import { PencilAlt } from "@styled-icons/heroicons-solid/PencilAlt";
@@ -10,6 +10,7 @@ import { Eye } from "@styled-icons/fluentui-system-regular/Eye";
 import { EyeOff } from "@styled-icons/fluentui-system-regular/EyeOff";
 import axios from "axios";
 import config from "../../config";
+import { SetoresContext } from "../../contexts/SetoresContext";
 
 export type ArchiveAdminToolsProps = {
   data?: any;
@@ -17,11 +18,23 @@ export type ArchiveAdminToolsProps = {
 
 export const ArchiveAdminTools = ({ data }: ArchiveAdminToolsProps) => {
   const [deleted, setDeleted] = useState(false);
-  const [setores, setSetores] = useState<string[]>([]);
-  const [visibilidade, setVisibilidade] = useState(true);
+  const [setores, setSetores] = useState<string[]>(data.setores);
+  const [visibilidade, setVisibilidade] = useState(data.visibilidade);
+  const setoresContext = useContext(SetoresContext);
+
+  const token = localStorage.getItem("token");
+  const configHeaders = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
   const handleDelete = async () => {
     try {
-      await axios.delete(`${config.url}${config.slugArchive}${data._id}`);
+      await axios.delete(
+        `${config.url}${config.slugArchive}${data._id}`,
+        configHeaders,
+      );
       setDeleted(true);
     } catch (e) {
       setDeleted(false);
@@ -29,14 +42,32 @@ export const ArchiveAdminTools = ({ data }: ArchiveAdminToolsProps) => {
     }
   };
 
-  const handleUpdate = () => {
-    //
+  const handleUpdate = async () => {
+    const dataUpdated = {
+      visibilidade,
+      setores,
+    };
+    if (setores.length === 0)
+      return alert("Adicione pelo menos 1 setor ao arquivo");
+
+    try {
+      await axios.put(
+        `${config.url}${config.slugArchive}${data._id}`,
+        dataUpdated,
+        configHeaders,
+      );
+      alert("Atualizado com sucesso");
+    } catch (err) {
+      console.log(err);
+      alert("Algo saiu errado");
+    }
   };
 
   const handleAddSetores = (e: any) => {
     const setor = e.target.textContent
       .toLowerCase()
       .replace(/[^a-zA-Z0-9]/g, "");
+    console.log(setor);
 
     setSetores((val) => {
       let data = [];
@@ -85,36 +116,23 @@ export const ArchiveAdminTools = ({ data }: ArchiveAdminToolsProps) => {
                 </Styled.Visibility>
 
                 <hr />
-                <p onClick={handleAddSetores}>
-                  Suporte
-                  <span>
-                    {setores && setores.includes("suporte") ? (
-                      <Eye size={20} />
-                    ) : (
-                      <EyeOff size={20} />
-                    )}
-                  </span>
-                </p>
-                <p onClick={handleAddSetores}>
-                  Suporte 2
-                  <span>
-                    {setores && setores.includes("suporte2") ? (
-                      <Eye size={20} />
-                    ) : (
-                      <EyeOff size={20} />
-                    )}
-                  </span>
-                </p>
-                <p onClick={handleAddSetores}>
-                  financeiro
-                  <span>
-                    {setores.includes("financeiro") ? (
-                      <Eye size={20} />
-                    ) : (
-                      <EyeOff size={20} />
-                    )}
-                  </span>
-                </p>
+                {setoresContext &&
+                  setoresContext.length > 0 &&
+                  setoresContext.map((setor: any) => (
+                    <p onClick={handleAddSetores} key={setor.pathName}>
+                      {setor.slug.charAt(0).toUpperCase() + setor.slug.slice(1)}
+                      <span>
+                        {setores &&
+                        setores.includes(
+                          setor.pathName.replace(/[^a-zA-Z0-9]/g, ""),
+                        ) ? (
+                          <Eye size={20} />
+                        ) : (
+                          <EyeOff size={20} />
+                        )}
+                      </span>
+                    </p>
+                  ))}
               </div>
               <span>* Clique para adicionar</span>
             </Styled.ContainerInput>

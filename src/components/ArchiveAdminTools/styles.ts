@@ -59,6 +59,7 @@ export const ContainerInput = styled.div`
     > div p span {
       display: inline-block;
       text-align: end;
+      pointer-events: none;
     }
 
     option:checked {
