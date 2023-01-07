@@ -9,7 +9,6 @@ import { GlobalStyles } from "./styles/global-styles";
 
 import { Page404 } from "./templates/Page404";
 import { Setor } from "./templates/Setor";
-import { Header } from "./components/Header";
 import { Home } from "./templates/Home";
 import { Processo } from "./templates/Processo";
 import { LoginTemplate } from "./templates/LoginTemplate";

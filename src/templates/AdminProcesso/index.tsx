@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { Processo } from "../Processo";
-import * as Styled from "./styles";
 
 export type AdminProcessoProps = {
   title?: string;

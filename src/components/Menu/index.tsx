@@ -3,8 +3,8 @@ import { paths } from "../../utils/paths";
 import { MenuLinks } from "../MenuLinks";
 
 export type MenuProps = {
-  href: string;
-  pathName: string;
+  href?: string;
+  pathName?: string;
 };
 
 export const Menu = () => {

@@ -21,9 +21,7 @@ export const ArchiveAdminTools = ({ data }: ArchiveAdminToolsProps) => {
   const [visibilidade, setVisibilidade] = useState(true);
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(
-        `${config.url}${config.slugArchive}${data._id}`,
-      );
+      await axios.delete(`${config.url}${config.slugArchive}${data._id}`);
       setDeleted(true);
     } catch (e) {
       setDeleted(false);

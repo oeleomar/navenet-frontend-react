@@ -38,7 +38,9 @@ export const Processo = ({ admin = false }) => {
     } else {
       setState("pop");
     }
-  }, [covered]);
+
+    if (error) alert(error);
+  }, [covered, error]);
 
   if (!data) {
     return (
