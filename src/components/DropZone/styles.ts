@@ -25,5 +25,10 @@ export const Wrapper = styled.div<DropZoneProps>`
 `;
 
 export const FilesContainer = styled.div`
-  ${({ theme }) => css``}
+  ${({ theme }) => css`
+    padding-top: 2rem;
+    max-height: 20rem;
+    min-height: 10rem;
+    overflow: auto;
+  `}
 `;

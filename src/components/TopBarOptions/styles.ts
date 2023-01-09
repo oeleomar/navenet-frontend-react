@@ -7,6 +7,5 @@ export const Wrapper = styled.div`
     box-shadow: ${theme.shadows.small};
     height: 6rem;
     position: fixed;
-    z-index: -1;
   `}
 `;

@@ -4,6 +4,8 @@ export const Wrapper = styled.div`
   ${({ theme }) => css`
     background-color: ${theme.colors.redPrimary};
     box-shadow: ${theme.shadows.small};
+    z-index: 3;
+    position: relative;
 
     > a {
       height: 6rem;

@@ -21,11 +21,13 @@ export const Menu = () => {
               return (
                 <MenuLinks
                   href={
-                    locate ? `/admin/setor/${path.slug}` : `/setor/${path.slug}`
+                    locate
+                      ? `/admin/setor/${path.pathName}`
+                      : `/setor/${path.pathName}`
                   }
                   pathName={path.slug}
                   key={`link__${path.pathName}`}
-                  slug={path.slug}
+                  slug={path.pathName}
                 />
               );
             })

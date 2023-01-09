@@ -8,6 +8,7 @@ import { FilePowerpoint } from "@styled-icons/fa-solid/FilePowerpoint";
 import { CardImage } from "@styled-icons/bootstrap/CardImage";
 import { Folder } from "@styled-icons/bootstrap/Folder";
 import { ArchiveAdminTools } from "../ArchiveAdminTools/ArchiveAdminTools";
+import { useParams } from "react-router-dom";
 
 export type ArchiveBoxProps = {
   originalname: string;
@@ -49,6 +50,7 @@ export const ArchiveBox = ({
     ppt: "powerpoint",
     pptx: "powerpoint",
   };
+  const params = useParams();
 
   const result = originalname
     .substring(originalname.length - 4)
@@ -57,7 +59,11 @@ export const ArchiveBox = ({
 
   return (
     <Styled.ContainerBox>
-      {admin ? <ArchiveAdminTools data={data} /> : ""}
+      {admin && data.setorCriado === params.setor ? (
+        <ArchiveAdminTools data={data} />
+      ) : (
+        ""
+      )}
       <Styled.ContainerType fileType={fileType}>
         {fileIconReturn(fileType)}
       </Styled.ContainerType>

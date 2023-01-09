@@ -15,7 +15,7 @@ export const SetoresContextProvider = ({
   const handleFetchData = useCallback(async () => {
     try {
       const dataFetch = await axios(
-        config.url + config.slugSuper + config.slugSector + "get",
+        config.url + config.slugSuper + config.slugSector,
       );
       setData(dataFetch.data.data);
     } catch (e) {

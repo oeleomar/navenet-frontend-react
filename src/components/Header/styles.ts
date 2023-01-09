@@ -6,5 +6,6 @@ export const Header = styled.header`
     height: 100vh;
     position: fixed;
     background-color: ${theme.colors.darkBlack};
+    z-index: 2;
   `}
 `;

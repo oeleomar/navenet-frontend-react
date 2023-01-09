@@ -27,6 +27,7 @@ export const SaveChanges = styled.button`
     background: none;
     display: block;
     margin-left: auto;
+    margin-top: 2rem;
     border: 1px solid transparent;
     padding: 5px 15px;
     font-family: inherit;

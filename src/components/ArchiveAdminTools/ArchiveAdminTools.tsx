@@ -11,6 +11,7 @@ import { EyeOff } from "@styled-icons/fluentui-system-regular/EyeOff";
 import axios from "axios";
 import config from "../../config";
 import { SetoresContext } from "../../contexts/SetoresContext";
+import { useParams } from "react-router-dom";
 
 export type ArchiveAdminToolsProps = {
   data?: any;
@@ -21,6 +22,7 @@ export const ArchiveAdminTools = ({ data }: ArchiveAdminToolsProps) => {
   const [setores, setSetores] = useState<string[]>(data.setores);
   const [visibilidade, setVisibilidade] = useState(data.visibilidade);
   const setoresContext = useContext(SetoresContext);
+  const params = useParams();
 
   const token = localStorage.getItem("token");
   const configHeaders = {
@@ -89,6 +91,7 @@ export const ArchiveAdminTools = ({ data }: ArchiveAdminToolsProps) => {
     }
   }, [deleted]);
 
+  console.log(params.setor !== data.setorCriado);
   return (
     <Styled.Wrapper>
       <Dialog.Root>
@@ -118,21 +121,24 @@ export const ArchiveAdminTools = ({ data }: ArchiveAdminToolsProps) => {
                 <hr />
                 {setoresContext &&
                   setoresContext.length > 0 &&
-                  setoresContext.map((setor: any) => (
-                    <p onClick={handleAddSetores} key={setor.pathName}>
-                      {setor.slug.charAt(0).toUpperCase() + setor.slug.slice(1)}
-                      <span>
-                        {setores &&
-                        setores.includes(
-                          setor.pathName.replace(/[^a-zA-Z0-9]/g, ""),
-                        ) ? (
-                          <Eye size={20} />
-                        ) : (
-                          <EyeOff size={20} />
-                        )}
-                      </span>
-                    </p>
-                  ))}
+                  setoresContext.map((setor: any) =>
+                    data.setorCriado !== setor.pathName ? (
+                      <p onClick={handleAddSetores} key={setor.pathName}>
+                        {setor.slug.charAt(0).toUpperCase() +
+                          setor.slug.slice(1)}
+                        <span>
+                          {setores &&
+                          setores.includes(
+                            setor.pathName.replace(/[^a-zA-Z0-9]/g, ""),
+                          ) ? (
+                            <Eye size={20} />
+                          ) : (
+                            <EyeOff size={20} />
+                          )}
+                        </span>
+                      </p>
+                    ) : null,
+                  )}
               </div>
               <span>* Clique para adicionar</span>
             </Styled.ContainerInput>

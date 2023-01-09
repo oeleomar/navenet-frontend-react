@@ -14,7 +14,6 @@ export const ArchiveAdminAdd = () => {
 
   const handleClose = () => {
     setClose(true);
-    console.log(close);
   };
 
   useEffect(() => {
@@ -44,7 +43,7 @@ export const ArchiveAdminAdd = () => {
           <Dialog.Close asChild onClick={handleClose}>
             <Styled.SaveChanges>Concluir</Styled.SaveChanges>
           </Dialog.Close>
-          <Dialog.Close asChild onClick={handleClose}>
+          <Dialog.Close asChild onClick={() => handleClose()}>
             <Styled.ButtonClose aria-label="close">
               <Close size={26} />
             </Styled.ButtonClose>
