@@ -23,3 +23,7 @@ export const Wrapper = styled.div<DropZoneProps>`
     }
   `}
 `;
+
+export const FilesContainer = styled.div`
+  ${({ theme }) => css``}
+`;

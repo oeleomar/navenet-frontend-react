@@ -26,47 +26,45 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );
 root.render(
-  <React.StrictMode>
-    <SetoresContextProvider>
-      <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <GlobalStyles />
+  <SetoresContextProvider>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <GlobalStyles />
 
-          <Routes>
-            <Route path="*" element={<Page404 />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/setor/:setor" element={<Setor />} />
-            <Route path="/setor/:setor/:id" element={<Processo />} />
+        <Routes>
+          <Route path="*" element={<Page404 />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/setor/:setor" element={<Setor />} />
+          <Route path="/setor/:setor/:id" element={<Processo />} />
 
-            <Route path="/arquivos/setor/:setor" element={<Archive />} />
-            <Route
-              path="/arquivos/setor/:setor/:id"
-              element={<ArchiveFolder />}
-            />
+          <Route path="/arquivos/setor/:setor" element={<Archive />} />
+          <Route
+            path="/arquivos/setor/:setor/:id"
+            element={<ArchiveFolder />}
+          />
 
-            <Route path="/admin/auth" element={<LoginTemplate />} />
-            <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/auth" element={<LoginTemplate />} />
+          <Route path="/admin" element={<Admin />} />
 
-            <Route path="/admin/setor/:setor" element={<AdminSetor />} />
-            <Route path="/admin/setor/:setor/:id" element={<AdminProcesso />} />
-            <Route
-              path="/admin/setor/:setor/new"
-              element={<AdminCreateProcess />}
-            />
-            <Route
-              path="/admin/setor/:setor/:id/edit"
-              element={<AdmninEditProcess />}
-            />
+          <Route path="/admin/setor/:setor" element={<AdminSetor />} />
+          <Route path="/admin/setor/:setor/:id" element={<AdminProcesso />} />
+          <Route
+            path="/admin/setor/:setor/new"
+            element={<AdminCreateProcess />}
+          />
+          <Route
+            path="/admin/setor/:setor/:id/edit"
+            element={<AdmninEditProcess />}
+          />
 
-            <Route
-              path="/arquivos/admin/setor/:setor"
-              element={<ArchiveAdmin />}
-            />
-          </Routes>
-        </BrowserRouter>
-      </ThemeProvider>
-    </SetoresContextProvider>
-  </React.StrictMode>,
+          <Route
+            path="/arquivos/admin/setor/:setor"
+            element={<ArchiveAdmin />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
+  </SetoresContextProvider>,
 );
 
 // If you want to start measuring performance in your app, pass a function
