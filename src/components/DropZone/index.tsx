@@ -17,7 +17,11 @@ export const DropZone = () => {
   }, []);
 
   const { isDragActive, isDragReject, getRootProps, getInputProps } =
-    useDropzone({ onDrop, maxFiles: 5, maxSize: 1024 * 100 });
+    useDropzone({
+      onDrop,
+      maxFiles: 5,
+      maxSize: 1024 * 100,
+    });
   return (
     <>
       <Styled.Wrapper
