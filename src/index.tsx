@@ -18,7 +18,6 @@ import { AdminCreateProcess } from "./templates/AdminCreateProcess";
 import { AdmninEditProcess } from "./templates/AdminEditProcess";
 import { AdminProcesso } from "./templates/AdminProcesso";
 import { Archive } from "./templates/Archive";
-import { ArchiveFolder } from "./templates/ArchiveFolder";
 import { ArchiveAdmin } from "./templates/ArchiveAdmin";
 import { SetoresContextProvider } from "./contexts/SetoresContext";
 
@@ -28,7 +27,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <SetoresContextProvider>
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
+      <BrowserRouter basename="/">
         <GlobalStyles />
 
         <Routes>
@@ -36,16 +35,10 @@ root.render(
           <Route path="/" element={<Home />} />
           <Route path="/setor/:setor" element={<Setor />} />
           <Route path="/setor/:setor/:id" element={<Processo />} />
-
           <Route path="/arquivos/setor/:setor" element={<Archive />} />
-          <Route
-            path="/arquivos/setor/:setor/:id"
-            element={<ArchiveFolder />}
-          />
 
           <Route path="/admin/auth" element={<LoginTemplate />} />
           <Route path="/admin" element={<Admin />} />
-
           <Route path="/admin/setor/:setor" element={<AdminSetor />} />
           <Route path="/admin/setor/:setor/:id" element={<AdminProcesso />} />
           <Route

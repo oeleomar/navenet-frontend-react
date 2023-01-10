@@ -22,7 +22,6 @@ export const ArchiveAdminTools = ({ data }: ArchiveAdminToolsProps) => {
   const [setores, setSetores] = useState<string[]>(data.setores);
   const [visibilidade, setVisibilidade] = useState(data.visibilidade);
   const setoresContext = useContext(SetoresContext);
-  const params = useParams();
 
   const token = localStorage.getItem("token");
   const configHeaders = {
@@ -60,7 +59,6 @@ export const ArchiveAdminTools = ({ data }: ArchiveAdminToolsProps) => {
       );
       alert("Atualizado com sucesso");
     } catch (err) {
-      console.log(err);
       alert("Algo saiu errado");
     }
   };
@@ -69,7 +67,6 @@ export const ArchiveAdminTools = ({ data }: ArchiveAdminToolsProps) => {
     const setor = e.target.textContent
       .toLowerCase()
       .replace(/[^a-zA-Z0-9]/g, "");
-    console.log(setor);
 
     setSetores((val) => {
       let data = [];
@@ -80,7 +77,6 @@ export const ArchiveAdminTools = ({ data }: ArchiveAdminToolsProps) => {
         val.push(setor);
         data = val;
       }
-      console.log(data);
       return [...data];
     });
   };
@@ -91,7 +87,6 @@ export const ArchiveAdminTools = ({ data }: ArchiveAdminToolsProps) => {
     }
   }, [deleted]);
 
-  console.log(params.setor !== data.setorCriado);
   return (
     <Styled.Wrapper>
       <Dialog.Root>

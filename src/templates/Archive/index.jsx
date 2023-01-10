@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { ArchiveBox } from "../../components/ArchiveBox";
 import { Header } from "../../components/Header";
-import { MenuProcess } from "../../components/MenuProcess";
 import { SectionComponent } from "../../components/SectionComponent";
 import { TitleComponent } from "../../components/TitleComponent";
 import config from "../../config";
@@ -71,10 +71,13 @@ export const Archive = () => {
       <Styled.Wrapper>
         <SectionComponent>
           <TitleComponent title="Arquivos" />
-          {data.map((val: any) => {
-            if (!val.visibilidade) return "";
-            return <MenuProcess key={val.titulo} {...val} archive={true} />;
-          })}
+          <Styled.WrapperBox>
+            {data.map((val: any) =>
+              val.visibilidade ? (
+                <ArchiveBox {...val.arquivo} data={val} key={val._id} />
+              ) : null,
+            )}
+          </Styled.WrapperBox>
         </SectionComponent>
       </Styled.Wrapper>
     </>
