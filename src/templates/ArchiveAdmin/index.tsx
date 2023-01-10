@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Upload } from "@styled-icons/bootstrap/Upload";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -20,6 +20,7 @@ export const ArchiveAdmin = ({ title }: AdminSetorProps) => {
   const param = useParams();
   const [data, setData] = useState<DataSetor[] | null>([]);
   const navigate = useNavigate();
+  const ref = React.createRef();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -89,7 +90,7 @@ export const ArchiveAdmin = ({ title }: AdminSetorProps) => {
                 </Styled.ButtonAdd>
               </Dialog.Trigger>
               <Dialog.Portal>
-                <ArchiveAdminAdd />
+                <ArchiveAdminAdd ref={ref} />
               </Dialog.Portal>
             </Dialog.Root>
           </Styled.MainContainer>

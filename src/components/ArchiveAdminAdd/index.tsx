@@ -8,7 +8,7 @@ export type ArchiveAdminAddProps = {
   title?: string;
 };
 
-export const ArchiveAdminAdd = () => {
+export const ArchiveAdminAdd = React.forwardRef(() => {
   const ref = useRef<HTMLDivElement>(null);
   const [close, setClose] = useState(false);
   const [disabled, setDisabled] = useState(false);
@@ -61,4 +61,4 @@ export const ArchiveAdminAdd = () => {
       </Dialog.Portal>
     </div>
   );
-};
+});
