@@ -11,14 +11,15 @@ export type ArchiveAdminAddProps = {
 export const ArchiveAdminAdd = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [close, setClose] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   const handleClose = () => {
     setClose(true);
   };
 
   useEffect(() => {
-    if (close) window.location.reload();
-  }, [close]);
+    if (close && !disabled) window.location.reload();
+  }, [close, disabled]);
   return (
     <div ref={ref}>
       <Dialog.Portal>
@@ -26,7 +27,12 @@ export const ArchiveAdminAdd = () => {
         <Dialog.Content
           onPointerDownOutside={handleClose}
           className="AlertDialogContent"
-          onCloseAutoFocus={handleClose}
+          onCloseAutoFocus={() => {
+            if (!disabled) handleClose();
+          }}
+          onInteractOutside={(e) => {
+            if (disabled) e.preventDefault();
+          }}
         >
           <Dialog.Title className="AlertDialogTitle dialogTitle">
             Adicionar novo arquivo
@@ -38,14 +44,16 @@ export const ArchiveAdminAdd = () => {
             </span>
           </Dialog.Description>
           <Styled.Container>
-            <DropZone />
+            <DropZone setDisabled={setDisabled} />
           </Styled.Container>
           <Dialog.Close asChild onClick={handleClose}>
-            <Styled.SaveChanges>Concluir</Styled.SaveChanges>
+            <Styled.SaveChanges disabled={disabled}>
+              Concluir
+            </Styled.SaveChanges>
           </Dialog.Close>
-          <Dialog.Close asChild onClick={() => handleClose()}>
-            <Styled.ButtonClose aria-label="close">
-              <Close size={26} />
+          <Dialog.Close asChild onClick={handleClose}>
+            <Styled.ButtonClose aria-label="close" disabled={disabled}>
+              <Close size={26} color={disabled ? "#7B7B7B" : "#FE2E34"} />
             </Styled.ButtonClose>
           </Dialog.Close>
         </Dialog.Content>

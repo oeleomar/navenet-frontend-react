@@ -8,7 +8,11 @@ export type UploadFileProps = {
   errors: FileError[];
 };
 
-export const DropZone = () => {
+export type DropZoneProps = {
+  setDisabled: (a: boolean) => void;
+};
+
+export const DropZone = ({ setDisabled }: DropZoneProps) => {
   const [files, setFiles] = useState<UploadFileProps[]>();
 
   const onDrop = useCallback((accFiles: File[], rejFiles: FileRejection[]) => {
@@ -47,6 +51,7 @@ export const DropZone = () => {
         {files && files.length > 0
           ? files.map((fileWrapper) => (
               <DropZoneUploadProcess
+                setDisabled={setDisabled}
                 file={fileWrapper.file}
                 error={fileWrapper.errors}
                 key={fileWrapper.file.name}

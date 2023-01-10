@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Upload } from "@styled-icons/bootstrap/Upload";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -94,9 +94,17 @@ export const ArchiveAdmin = ({ title }: AdminSetorProps) => {
             </Dialog.Root>
           </Styled.MainContainer>
           <Styled.WrapperBox>
-            {data.map((val: any) => (
-              <ArchiveBox {...val.arquivo} admin data={val} key={val._id} />
-            ))}
+            {data.map((val: any) => {
+              if (val.setorCriado === param.setor)
+                return (
+                  <ArchiveBox {...val.arquivo} admin data={val} key={val._id} />
+                );
+              if (val.visibilidade && val.setorCriado !== param.setor)
+                return (
+                  <ArchiveBox {...val.arquivo} admin data={val} key={val._id} />
+                );
+              return null;
+            })}
           </Styled.WrapperBox>
         </SectionComponent>
       </Styled.Wrapper>

@@ -1,17 +1,18 @@
-import { useContext, useEffect, useState } from "react";
+import axios from "axios";
 import * as Styled from "./styles";
-import { TrashFill } from "@styled-icons/bootstrap/TrashFill";
-import { PencilAlt } from "@styled-icons/heroicons-solid/PencilAlt";
+import { useContext, useEffect, useState } from "react";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Close } from "@styled-icons/evil/Close";
+
+import { TrashFill } from "@styled-icons/bootstrap/TrashFill";
+import { PencilAlt } from "@styled-icons/heroicons-solid/PencilAlt";
 import { AlertCircleOutline } from "styled-icons/evaicons-outline";
 import { Eye } from "@styled-icons/fluentui-system-regular/Eye";
 import { EyeOff } from "@styled-icons/fluentui-system-regular/EyeOff";
-import axios from "axios";
-import config from "../../config";
+import { Close } from "@styled-icons/evil/Close";
+
 import { SetoresContext } from "../../contexts/SetoresContext";
-import { useParams } from "react-router-dom";
+import config from "../../config";
 
 export type ArchiveAdminToolsProps = {
   data?: any;

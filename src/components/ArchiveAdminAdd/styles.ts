@@ -11,18 +11,19 @@ export const Container = styled.div`
 `;
 
 export const ButtonClose = styled.button`
-  ${({ theme }) => css`
+  ${({ theme, disabled }) => css`
     position: absolute;
     left: 90%;
     top: 5%;
     cursor: pointer;
     background: none;
     border: none;
+    color: ${disabled ? theme.colors.black : theme.colors.redPrimary};
   `}
 `;
 
 export const SaveChanges = styled.button`
-  ${({ theme }) => css`
+  ${({ theme, disabled }) => css`
     cursor: pointer;
     background: none;
     display: block;
@@ -33,12 +34,23 @@ export const SaveChanges = styled.button`
     font-family: inherit;
     font-size: ${theme.font.sizes.small};
     color: rgb(24, 121, 78);
-    background-color: rgb(204, 235, 215);
+    background-color: ${disabled
+      ? theme.colors.darkWhite2
+      : "rgb(204, 235, 215)"};
     transition: all 0.3s ease-in-out;
     border-radius: 5px;
 
     &:hover {
       border: 1px solid rgb(24, 121, 78);
+    }
+
+    &:disabled {
+      color: ${theme.colors.black};
+      cursor: auto;
+    }
+
+    &:hover:disabled {
+      border: 1px solid ${theme.colors.black};
     }
   `}
 `;

@@ -12,11 +12,13 @@ import * as Styled from "./styles";
 export type DropZoneUploadProcessProps = {
   file: File;
   error: any;
+  setDisabled: (a: boolean) => void;
 };
 
 export const DropZoneUploadProcess = ({
   file,
   error,
+  setDisabled,
 }: DropZoneUploadProcessProps) => {
   const [progress, setProgress] = useState(0);
   const [uploadError, setUploadError] = useState(false);
@@ -39,11 +41,11 @@ export const DropZoneUploadProcess = ({
       try {
         await uploadFile(file, params.setor || "", configHeaders, setProgress);
       } catch (err: any) {
-        if (err.response.data.msg.msg)
-          setErrorMessage(err.response.data.msg.msg);
+        setUploadError(true);
         setUploadSuccess(false);
         setLoading(false);
-        setUploadError(true);
+        if (err?.response?.data?.msg?.msg)
+          setErrorMessage(err.response.data.msg.msg);
       }
     };
 
@@ -53,12 +55,14 @@ export const DropZoneUploadProcess = ({
   useEffect(() => {
     if (progress < 100) {
       setLoading(true);
+      setDisabled(true);
       return;
     }
     if (uploadError) return;
+    setDisabled(false);
     setLoading(false);
     setUploadSuccess(true);
-  }, [progress, uploadError]);
+  }, [progress, uploadError, setDisabled]);
 
   const result = file.name.substring(file.name.length - 4).replace(/[\W]/g, "");
   return (
