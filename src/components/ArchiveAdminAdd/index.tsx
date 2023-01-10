@@ -18,6 +18,7 @@ export const ArchiveAdminAdd = () => {
   };
 
   useEffect(() => {
+    console.log(disabled);
     if (close && !disabled) window.location.reload();
   }, [close, disabled]);
   return (

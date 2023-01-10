@@ -24,7 +24,7 @@ export const DropZone = ({ setDisabled }: DropZoneProps) => {
     useDropzone({
       onDrop,
       maxFiles: 5,
-      maxSize: 1024 * 100,
+      maxSize: 1048576 * 100,
     });
   return (
     <>
@@ -54,7 +54,7 @@ export const DropZone = ({ setDisabled }: DropZoneProps) => {
                 setDisabled={setDisabled}
                 file={fileWrapper.file}
                 error={fileWrapper.errors}
-                key={fileWrapper.file.name}
+                key={`${fileWrapper.file.name}`}
               />
             ))
           : ""}
