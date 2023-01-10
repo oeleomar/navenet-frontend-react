@@ -53,6 +53,7 @@ export const DropZoneUploadProcess = ({
       }
     };
     upload();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
