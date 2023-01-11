@@ -21,9 +21,6 @@ import { Archive } from "./templates/Archive";
 import { ArchiveAdmin } from "./templates/ArchiveAdmin";
 import { SetoresContextProvider } from "./contexts/SetoresContext";
 
-const url = process.env.REACT_APP_BACKEND_URL;
-console.log(url);
-
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );
