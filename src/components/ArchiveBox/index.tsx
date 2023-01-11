@@ -8,7 +8,9 @@ import { FilePowerpoint } from "@styled-icons/fa-solid/FilePowerpoint";
 import { CardImage } from "@styled-icons/bootstrap/CardImage";
 import { Folder } from "@styled-icons/bootstrap/Folder";
 import { ArchiveAdminTools } from "../ArchiveAdminTools/ArchiveAdminTools";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { Download } from "@styled-icons/bootstrap/Download";
+import config from "../../config";
 
 export type ArchiveBoxProps = {
   originalname: string;
@@ -69,10 +71,18 @@ export const ArchiveBox = ({
       </Styled.ContainerType>
       <Styled.ContainerName>
         <Styled.ArchiveName>
-          {originalname.length > 20
-            ? `${originalname.slice(0, 20)} ... .${result}`
+          {originalname.length > 15
+            ? `${originalname.slice(0, 15)} ... .${result}`
             : originalname}
         </Styled.ArchiveName>
+
+        <a
+          href={config.url + "archives/" + data.arquivo.filename}
+          download={data.arquivo.originalname}
+          target="_blanck"
+        >
+          <Download size={26} />
+        </a>
       </Styled.ContainerName>
     </Styled.ContainerBox>
   );

@@ -57,16 +57,16 @@ export const DropZoneUploadProcess = ({
   }, []);
 
   useEffect(() => {
-    if (progress < 100 && !uploadError) {
+    console.log(!uploadError);
+    if (progress < 100 && uploadError === false) {
       setLoading(true);
       setDisabled(true);
       return;
     }
-    if (uploadError) return;
 
-    setDisabled(false);
     setLoading(false);
-    setUploadSuccess(true);
+    setDisabled(false);
+    if (!uploadError) setUploadSuccess(true);
   }, [progress, uploadError, setDisabled]);
 
   const result = file.name.substring(file.name.length - 4).replace(/[\W]/g, "");

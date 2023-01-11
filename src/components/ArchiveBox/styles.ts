@@ -38,13 +38,20 @@ export const ContainerName = styled.div`
     padding: 0.5rem 1.5rem;
     border-top: 2px solid ${theme.colors.darkWhite2};
     box-shadow: 0px 0.95627px 4.78135px ${theme.colors.darkWhite2};
+    display: flex;
+    align-items: center;
+
+    > a {
+      margin-left: 5px;
+      color: blue;
+    }
   `}
 `;
 
 export const ArchiveName = styled.h3`
   ${({ theme }) => css`
     font-weight: 400;
-    font-size: ${theme.font.sizes.small};
+    font-size: ${theme.font.sizes.xsmall};
     color: ${theme.colors.black};
   `}
 `;
